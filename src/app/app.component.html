@@ -1,20 +1,43 @@
-<!--The content below is only a placeholder and can be replaced.-->
+<ul class="nav">
+  <li><a href="https://www.expertus.ca/">Home</a></li>
+  <li><a href="https://www.expertus.ca/about-us/">About</a></li>
+  <li><a href="https://www.expertus.ca/solutions/">Products</a></li>
+  <li><a href="https://www.expertus.ca/contact/">Contact</a></li>
+  <li><a href="https://www.expertus.ca/request-a-demo/">Request Demo</a></li>
+</ul>
+<div style="text-align:center">
+  <img src="../assets/Expertuslogo.png">
+</div>
 <div style="text-align:center">
   <h1>
-    Welcome to {{ title }}!
+    {{title}}
   </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
+<h2 style="text-align:center">This is not a official website of Expertus.</h2>
+<h2 style="text-align:center">Wanted to know more about Expertus? We provide solutions in different domains. Please use the below buttons to navigate to respective page.</h2>
+<div style="text-align:center;">
+<button class="button" onclick="location.href='https://www.expertus.ca/solutions/solution-for-treasurers/'" onmouseover="this.style.cursor='pointer'">Treasurers</button>
+<button class="button" onclick="location.href='https://www.expertus.ca/solutions/solution-for-banks/'" onmouseover="this.style.cursor='pointer'">Banks</button>
+<button class="button" onclick="location.href='https://www.expertus.ca/solutions/case-management-solution/'" onmouseover="this.style.cursor='pointer'">Case Management</button>
+<button class="button" onclick="location.href='https://www.expertus.ca/solutions/swift-connectivity/'" onmouseover="this.style.cursor='pointer'">Swift Connectivity</button>
+</div><br><br>
+<h2 style="text-align:center">A Glance at Expertus.</h2>
+<p style="margin-left: 500px;margin-right: 500px; margin-top: 10px;">Expertus is a Montreal-based Fintech company founded in 2001 specialized in innovative payments and treasury solutions. As a pioneer in Cloud solutions for financial services, Expertus accelerates digital transformation while complying to regulations and financial policies.   <a href="https://www.expertus.ca/">more...</a></p>
+<br>
+<h2 style="text-align:center">Let us Call you. Send your contact Info.</h2>
+<fieldset style="width:525px; border-radius: 5px;margin: auto">
+  <form [formGroup]="messageForm">
+    <input formControlName="_firstName"class="textfields1" type="text" placeholder="First Name">
+    <input formControlName="_lastName" class="textfields" type="text" placeholder="Last Name">
+    <input formControlName="_phoneNumber" class="textfields1" type="text" placeholder="Phone Number">
+    <input formControlName="_emailAddress" class="textfields" type="text" placeholder="Email Address">
+    <textarea formControlName="_textmessage" placeholder="Type your Message here..." cols="71" rows="10" maxlength="1000"></textarea>
+    <br>
+    <button style="margin-left: 205px" class="button" onmouseover="this.style.cursor='pointer'" 
+    (click)="SendMessage()">Send Message</button>
+  </form>
+</fieldset>
+<ul class="nav1">
+<h5>Current Location: {{CurrentLocation}}, Temparature: {{Temp}}Kelvin, Pressure: {{pressure}}hPa, Humidity: {{Humidity}}%</h5>
 </ul>
 
