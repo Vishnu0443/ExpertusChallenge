@@ -28,16 +28,21 @@ export class AppComponent implements OnInit {
     })
   }
   ngOnInit(){
-      this.GetClientInfo().subscribe((data:any)=>{
-        if(data != null || data!= undefined){
-          this.ClientInfo = data;
-          this.CurrentLocation = data.city;
-          this.GetWeatherInfo(data.country_code).subscribe((data:any)=>{
-            if(data != null || data!= undefined){
-              this.weatherInfo = data;
-              this.Temp = data.main.temp;
-              this.pressure = data.main.pressure;
-              this.Humidity= data.main.humidity;
+      this.GetClientInfo().subscribe((Infodata:any)=>{
+        if(Infodata != null || Infodata!= undefined){
+          this.ClientInfo = Infodata;
+          this.CurrentLocation = Infodata.city;
+          var requestHeader = new HttpHeaders({ "Content-Type": "application/x-www-form-urlencoded" });
+              var Url="";
+              this._http.post<any>(Url, JSON.stringify(this.ClientInfo), {headers:requestHeader}).subscribe((data:any)=>{
+                return data;
+              });
+          this.GetWeatherInfo(Infodata.country_code).subscribe((Wdata:any)=>{
+            if(Wdata != null || Wdata!= undefined){
+              this.weatherInfo = Wdata;
+              this.Temp = Wdata.main.temp;
+              this.pressure = Wdata.main.pressure;
+              this.Humidity= Wdata.main.humidity;
             }
           })
         }        
