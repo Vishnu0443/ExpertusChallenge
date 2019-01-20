@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 //User Defined Components
 const appRoutes: Routes =[
 ]
@@ -13,7 +14,7 @@ const appRoutes: Routes =[
     AppComponent
   ],
   imports: [
-    BrowserModule, RouterModule.forRoot(appRoutes), FormsModule,ReactiveFormsModule,HttpClientModule
+    BrowserModule, RouterModule.forRoot(appRoutes), FormsModule,ReactiveFormsModule,HttpClientModule,FlashMessagesModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm, FormBuilder, FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,8 @@ export class AppComponent implements OnInit {
   Temp: number;
   pressure: number;
   Humidity: number;
-  constructor(private _fb: FormBuilder, private _http: HttpClient){
+  ErrorMessage: string;
+  constructor(private _fb: FormBuilder, private _http: HttpClient, private _flashMessagesService: FlashMessagesService){
     this.messageForm = this._fb.group({
       _firstName:['',[Validators.required]],
       _lastName:['',[Validators.required]],
@@ -52,9 +54,22 @@ export class AppComponent implements OnInit {
     return WInfo;
   }
   SendMessage(){
-    this.messageForm.value._firstName
-    this.messageForm.value._lastName
-    this.messageForm.value._phoneNumber
-    this.messageForm.value._emailAddress
+    if(!this.messageForm.valid){
+      this._flashMessagesService.show('You must enter all the fields to submit the message.', {cssClass: 'alert-danger', timeout: 5000})
+    }
+    else{
+      var FirstName = this.messageForm.value._firstName;
+      var LastName = this.messageForm.value._lastName;
+      var Phone = this.messageForm.value._phoneNumber;
+      var EmailAddress = this.messageForm.value._emailAddress;
+      var Message = this.messageForm.value._textmessage;
+      var data = "FirstName=" + FirstName + "&LastName="+LastName + "&Phone=" + Phone+ "&EmailAddress=" + EmailAddress;
+      var requestHeader = new HttpHeaders({ "Content-Type": "application/x-www-form-urlencoded" })
+      var Url="";
+      this._http.post<any>(Url, data, {headers:requestHeader}).subscribe((data:any)=>{
+        return data;
+      });
+    }
+   
   }
 }
