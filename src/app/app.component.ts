@@ -33,8 +33,10 @@ export class AppComponent implements OnInit {
           this.ClientInfo = Infodata;
           this.CurrentLocation = Infodata.city;
           var requestHeader = new HttpHeaders({ "Content-Type": "application/x-www-form-urlencoded" });
-              var Url="";
-              this._http.post<any>(Url, JSON.stringify(this.ClientInfo), {headers:requestHeader}).subscribe((data:any)=>{
+              var Url="http://localhost:8080/saveClientInfo";
+              var model ="model=" +JSON.stringify(this.ClientInfo);
+              
+              this._http.post<any>(Url, model, {headers:requestHeader}).subscribe((data:any)=>{
                 return data;
               });
           this.GetWeatherInfo(Infodata.country_code).subscribe((Wdata:any)=>{
@@ -68,12 +70,12 @@ export class AppComponent implements OnInit {
       var Phone = this.messageForm.value._phoneNumber;
       var EmailAddress = this.messageForm.value._emailAddress;
       var Message = this.messageForm.value._textmessage;
-      var data = "FirstName=" + FirstName + "&LastName="+LastName + "&Phone=" + Phone+ "&EmailAddress=" + EmailAddress;
+      var data = "firstName=" + FirstName + "&lastName="+LastName + "&phone=" + Phone+ "&emailAddress=" + EmailAddress + "&message=" + Message;
       var requestHeader = new HttpHeaders({ "Content-Type": "application/x-www-form-urlencoded" })
-      var Url="";
-      this._http.post<any>(Url, data, {headers:requestHeader}).subscribe((data:any)=>{
-        return data;
-      });
+      var Url="http://localhost:8080/saveMessage";
+      this._http.post<any>(Url, data, {headers:requestHeader}).subscribe((apidata)=>{
+        return apidata;
+      },(error)=>console.log(error));
     }
    
   }
