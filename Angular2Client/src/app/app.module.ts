@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FlashMessagesModule } from 'angular2-flash-messages';
+import { Appcomponentservices} from './app.componentservices';
+import { pipe } from '@angular/core/src/render3/pipe';
 //User Defined Components
 const appRoutes: Routes =[
 ]
@@ -16,7 +18,7 @@ const appRoutes: Routes =[
   imports: [
     BrowserModule, RouterModule.forRoot(appRoutes), FormsModule,ReactiveFormsModule,HttpClientModule,FlashMessagesModule.forRoot()
   ],
-  providers: [],
+  providers: [Appcomponentservices],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

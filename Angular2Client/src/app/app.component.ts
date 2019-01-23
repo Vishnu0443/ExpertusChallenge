@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm, FormBuilder, FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { map, filter, switchMap } from 'rxjs/operators';
+import { Appcomponentservices} from './app.componentservices';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +20,7 @@ export class AppComponent implements OnInit {
   pressure: number;
   Humidity: number;
   ErrorMessage: string;
-  constructor(private _fb: FormBuilder, private _http: HttpClient, private _flashMessagesService: FlashMessagesService){
+  constructor(private _fb: FormBuilder, private _http: HttpClient, private _flashMessagesService: FlashMessagesService, private _services :Appcomponentservices){
     this.messageForm = this._fb.group({
       _firstName:['',[Validators.required]],
       _lastName:['',[Validators.required]],
@@ -32,13 +34,11 @@ export class AppComponent implements OnInit {
         if(Infodata != null || Infodata!= undefined){
           this.ClientInfo = Infodata;
           this.CurrentLocation = Infodata.city;
-          var requestHeader = new HttpHeaders({ "Content-Type": "application/x-www-form-urlencoded" });
-              var Url="http://localhost:8080/saveClientInfo";
-              var model ="model=" +JSON.stringify(this.ClientInfo);
-              
-              this._http.post<any>(Url, model, {headers:requestHeader}).subscribe((data:any)=>{
-                return data;
-              });
+          var model ="model=" +JSON.stringify(this.ClientInfo);
+          this._services.CallServicesClientInfo(model)
+          .subscribe((dataapi: any)=>{
+              console.log(dataapi);
+          })   
           this.GetWeatherInfo(Infodata.country_code).subscribe((Wdata:any)=>{
             if(Wdata != null || Wdata!= undefined){
               this.weatherInfo = Wdata;
@@ -71,12 +71,12 @@ export class AppComponent implements OnInit {
       var EmailAddress = this.messageForm.value._emailAddress;
       var Message = this.messageForm.value._textmessage;
       var data = "firstName=" + FirstName + "&lastName="+LastName + "&phone=" + Phone+ "&emailAddress=" + EmailAddress + "&message=" + Message;
-      var requestHeader = new HttpHeaders({ "Content-Type": "application/x-www-form-urlencoded" })
-      var Url="http://localhost:8080/saveMessage";
-      this._http.post<any>(Url, data, {headers:requestHeader}).subscribe((apidata)=>{
-        return apidata;
-      },(error)=>console.log(error));
-    }
-   
+      this._services.CallServicesMessage(data)
+      .subscribe((dataapi: any)=>{
+          console.log(dataapi);
+      });
+    }  
   }
+
+  
 }
