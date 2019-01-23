@@ -1,0 +1,29 @@
+Key features of the Web site: 
+	1)	When the user enters the web site it tracks the Users Location, IP address, Country and all other location details and sends to API and saves 			in data base.
+	2)	User can contact the Company by giving his/her details on send message form. The details and the message can be saved in the database.
+	3)	Used free public API’s to display the user location, weather etc.
+	4)	Provided path to social media pages.
+ 
+Apart from these there are many links that redirect the user to the Expertus official website.
+
+There is a backend which is written in Java. 
+	As I am not much familiar with Eclipse environment I have taken help from my friend for project setup.  
+
+Database used is SQL Server. 
+	Though the API is not fully configured to connect to Database I have written the Database scripts(like Tables, Stored Procedure) and pushed the code 
+	to my repository.
+
+Project Environment: 
+	For UI: HTML, Angular2+, CSS.
+	For Backend: JAVA
+	For data storage: SQL Server.
+
+IDE's: 
+	Visual Studio Code for Client.
+	Eclipse for Java.
+	GIT Desktop for commit and push to repository.
+
+
+Note: This is not official website of Expertus, I have created this website as part of recruitment process of the company.
+
+
